@@ -1,8 +1,16 @@
-import os
 import psycopg2
-from psycopg2 import sql
 
-DATABASE_URL = os.getenv('# put your databse URL over here to communicate with the Database')
+conn = psycopg2.connect(
+    dbname="db-1",
+    user="admin",
+    password="admin9760",
+    host="localhost",
+    port="5432"
+)
 
-def get_db_connection():
-    return psycopg2.connect(DATABASE_URL)
+cur = conn.cursor()
+
+# Execute queries here
+
+cur.close()
+conn.close()
