@@ -1,16 +1,6 @@
-import psycopg2
+from databases import Database
 
-conn = psycopg2.connect(
-    dbname="db-1",
-    user="admin",
-    password="admin9760",
-    host="localhost",
-    port="5432"
-)
+DATABASE_URL = "postgresql://admin:admin9760@localhost:5432/db-1"
 
-cur = conn.cursor()
-
-# Execute queries here
-
-cur.close()
-conn.close()
+# Async database instance
+database = Database(DATABASE_URL)
