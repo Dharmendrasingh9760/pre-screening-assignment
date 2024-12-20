@@ -11,17 +11,17 @@ if TYPE_CHECKING:
 app = _fastapi.FastAPI()
 
 
-@app.post("/api/contacts/", response_model=_schemas.Contact)
+@app.post("/api/contacts/", response_model=_schemas.user)
 async def create_contact(
-    contact: _schemas.CreateContact,
+    contact: _schemas.Createuser,
     db: _orm.Session = _fastapi.Depends(_services.get_db),
 ):
-    return await _services.create_contact(contact=contact, db=db)
+    return await _services.create_user(contact=contact, db=db)
 
 
 @app.get("/api/contacts/", response_model=List[_schemas.Contact])
 async def get_contacts(db: _orm.Session = _fastapi.Depends(_services.get_db)):
-    return await _services.get_all_contacts(db=db)
+    return await _services.get_all_user(db=db)
 
 
 @app.get("/api/contacts/{contact_id}/", response_model=_schemas.Contact)
